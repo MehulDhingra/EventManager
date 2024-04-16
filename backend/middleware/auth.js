@@ -1,12 +1,11 @@
 const user = require('../models/users');
 const jwt = require("jsonwebtoken");
 const authenticationMiddleware = async (req, res, next) => {
-  const { username, email, number, event } = req.body;
-  const userAuth = {
-    username: username,
+  const { email, password } = req.body;
+  const userAuth =
+  {
     email: email,
-    number: number,
-    event: event
+    password: password
   }
 
   if (!userAuth) {
@@ -16,13 +15,13 @@ const authenticationMiddleware = async (req, res, next) => {
   try {
     const obj = await user.findOne(userAuth);
     console.log(obj);
-    const id = obj._id;
-    const token = jwt.sign({ id, obj }, process.env.JWT_SECRET, { expiresIn: '2h' });
-    req.headers.authorization = token;
+    req.user = obj;
+    // console.log(req);
+    // res.status(200).send(obj)
     next();
-  } catch (err) {
-    res.status(404).send("User not found, please enter valid details or sign up first");
-    return
+  }
+  catch (err) {
+    res.status(404).send("User not found, Please enter valid details or sign up first");
   }
 }
 

@@ -10,7 +10,7 @@ const errorHandlerMiddleware = require('./middleware/error-handler');
 const connectMiddle = require('./middleware/connect');
 
 // middleware
-app.use(express.static('./public'));
+// app.use(express.static('./public'));
 app.use(express.json());
 app.use(connectMiddle);
 app.use('/api/v1', mainRouter);

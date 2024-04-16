@@ -9,7 +9,7 @@ const jsonData =
     username: "mehul",
     email: "dhingrajd@gmail.com",
     number: 8448327120,
-    event: "V"
+    password: "1234"
 };
 const k = "mongodb+srv://dhingramehul296:12mehul345@cluster0.b1srurw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
@@ -18,6 +18,7 @@ const populateDB = async () => {
         console.log(k);
         // console.log(k);
         await connectDB(k);
+        await userModel.deleteMany();
         await userModel.create(jsonData);
         console.log('Database populated successfully');
         process.exit(0);

@@ -13,13 +13,17 @@ const userSchema = new mongoose.Schema({
         type: Number,
         required: [true, 'contact no is required '],
     },
-    event: {
+    password: {
         type: String,
-        enum: {
-            values: ['V', 'C', 'A', 'B'],
-            message: '{VALUE} is not supported',
-        }
-    }
+        required: [true, "Password is required"]
+    },
+    // event: {
+    //     type: String,
+    //     enum: {
+    //         values: ['V', 'C', 'A', 'B'],
+    //         message: '{VALUE} is not supported',
+    //     }
+    // }
 })
 
 module.exports = mongoose.model('userModel', userSchema)

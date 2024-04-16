@@ -14,7 +14,7 @@ const tokenVerify = async (req, res, next) => {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         const { id, user } = decoded;
         console.log(user);
-        console.log(User.findOne(user));
+        // console.log(User.findOne(user));
         next();
     } catch (error) {
         throw new UnAuth("User is unauthorized to access this")
