@@ -44,7 +44,7 @@ const dashboard = async (req, res, next) => {
     }
 
     catch (err) {
-        console.log(err);
+        res.status(200).json({msg:"Authentication Failed"});
     }
 }
 
